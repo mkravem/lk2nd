@@ -5,21 +5,21 @@ on:
 jobs:
   # Build lk2nd-msm8916 separately first to avoid booting lots of runners
   # for obvious build errors that affect all platforms
-  lk2nd-msm8916:
+  lk2nd-msm8917:
     name: lk2nd
     uses: ./.github/workflows/lk2nd.yml
     with:
       project: lk2nd
-      platform: msm8916
+      platform: msm8917
       artifacts: |
         build-*/lk.bin
         build-*/lk2nd.img
   lk2nd:
-    needs: lk2nd-msm8916
+    needs: lk2nd-msm8917
     uses: ./.github/workflows/lk2nd-matrix.yml
     with:
       project: lk2nd
-      exclude: msm8916  # Already built separately above
+      exclude: msm8917  # Already built separately above
       artifacts: |
         build-*/lk.bin
         build-*/lk2nd.img
